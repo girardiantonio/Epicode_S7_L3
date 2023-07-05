@@ -7,9 +7,9 @@ const library = function () {
         return res.json()
       } else {
         if (res.status === 404) {
-          throw new Error("Not found")
+          throw new Error("Non trovato")
         } else if (res.status === 500) {
-          throw new Error("Internal Server Error")
+          throw new Error("Errore interno del server")
         } else {
           throw new Error("Errore nella chiamata API")
         }
@@ -26,10 +26,10 @@ const library = function () {
           <div class="card-body">
           <img src="${element.img}" class="card-img-top" alt="image" style="height: 25em"/>
           <h5 class="card-title" style="height: 5em; margin: 1em 0 1em 0">${element.title}</h5>
-          <p class="card-text">Price: $ ${element.price}</p>
+          <p class="card-text">Prezzo: $ ${element.price}</p>
           <div class="d-flex justify-content-around">
-          <button id="hideButton" type="button" class="btn btn-outline-danger p-fixed">Scarta</button>
-          <button id="buyButton" type="button" class="btn btn-outline-success">
+          <button type="button" class="btn btn-outline-danger p-fixed">Scarta</button>
+          <button type="button" class="btn btn-outline-success">
           Compra ora
           </button>
           </div>
@@ -37,6 +37,23 @@ const library = function () {
           </div> 
         `
         container.appendChild(card)
+
+        let hiddenButton = card.querySelectorAll(".btn-outline-danger")
+        hiddenButton.forEach((button) => {
+          button.addEventListener("click", function () {
+            card.classList.add("d-none")
+          })
+        })
+
+        let buyButton = card.querySelectorAll(".btn-outline-success")
+        buyButton.forEach((button) => {
+          button.addEventListener("click", function () {
+            let cart = document.getElementById("shop")
+            let newArt = document.createElement("li")
+            newArt.textContent = element.title + " - $ " + element.price
+            cart.appendChild(newArt)
+          })
+        })
       })
     })
     .catch((err) => {
