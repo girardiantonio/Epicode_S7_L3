@@ -1,21 +1,11 @@
-const Data = function () {
-  fetch("https://striveschool-api.herokuapp.com/books")
-    .then((res) => {
-      if (res.ok) {
-        //prelevo i dati dalla pagina
-        return res.json()
-      } else {
-        if (res.status === 404) {
-          throw new Error("Not found")
-        } else if (res.status === 500) {
-          throw new Error("Internal Server Error")
-        } else {
-          throw new Error("Errore nella chiamata API")
-        }
-      }
-    })
+const cards = document.getElementsByClassName("card")
+const hiddenCards = document.getElementById("hideButton")
+const buyCards = document.getElementById("buyButton")
 
-    .catch((err) => {
-      console.log(err)
-    })
+const remove = function () {
+  hiddenCards.addEventListener("click", function () {
+    cards.style.display = "none"
+  })
 }
+
+remove()
