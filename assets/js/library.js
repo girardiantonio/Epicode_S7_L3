@@ -35,8 +35,7 @@ const library = function () {
           </div>
           </div>
           </div> 
-          `
-
+        `
         container.appendChild(card)
       })
     })
