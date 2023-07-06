@@ -50,7 +50,15 @@ const library = function () {
           button.addEventListener("click", function () {
             let cart = document.getElementById("shop")
             let newArt = document.createElement("li")
+
             newArt.textContent = element.title + " - $ " + element.price
+
+            newArt.innerHTML = `
+            <p  class="list-group-item d-flex justify-content-between align-items-start ">
+            ${element.title} - 
+            ${element.price} $
+            </p>
+            `
             cart.appendChild(newArt)
           })
         })
